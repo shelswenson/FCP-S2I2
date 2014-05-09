@@ -1,0 +1,125 @@
+\section{Conceptualization Activities} 
+
+The PIs envisioned the major activities including three interdisciplinary domain-focused workshops (in biological sciences, social networking, and cybersecurity) where experts in aspects of grand challenge problems and software components in the given domain identify core opportunity areas, determine critical software infrastructure, and discover software sustainability challenges. In our initial exploratory work included 
+\begin{itemize}
+\item	a kick-off meeting of the PIs and CoPIs, where we 
+	\begin{itemize}
+	\item refined the focus of our conceptualization efforts to data-intensive grand challenge problems enabled by graph algorithms and
+	\item determined initial members of our steering committee: Neil Chu Hong (Software Sustainability Institute, UK), Rob Schreiber (Hewlett Packard Laboratories), Mark Snir (Argonne National Laboratory and University of Illinois at Urbana-Champaign).
+	\end{itemize}
+\item	a ``BIO- and CISE-related NSF-SI2 activities” BoF at ACM/IEEE International Conference for High Performance Computing, Networking, Storage and Analysis (SC), Salt Lake City UT, and  
+\item	face-to-face meetings with domain experts and leaders cyberinfrastructure.
+\end{itemize}
+
+Through these engagements, we concluded that for the social networking and cybersecurity domains these goals could be achieved through smaller-scale interactions, while we could best understand the opportunities and challenges in biological sciences through a series of workshops and targeted engagements with specific individuals and groups. 
+
+\subsection{Domain Workshops}
+
+\subsubsection{Bio-domain workshop 1} Our first workshop on ``Future computing platforms to accelerate Next-Gen Sequencing (NGS) applications” held on May 19th 2013 in Cambridge, MA was collocated with IPDPS 2013. The full report is available at our project wiki page\cite[wiki]. The workshop invited domain scientists from the NGS-enabled application areas of biology and computer science researchers. The workshop included more than a dozen interdisciplinary scientists from biology and CS including representatives from iPlant, Galaxy, and BigData for NGS applications, as well as designers and developers of several widely used NGS-enabled software applications. The aim of this workshop was to identify software infrastructure needs within the NGS applications community and develop a plan of action for our proposed center in this area.
+
+The discussions during and following the workshop were successful in identifying 
+\begin{itemize}
+\item	core opportunity areas in NextGen-Sequencing-enabled bioinformatics where future platforms can make a significant impact, 
+\item	software sustainability challenges that would benefit from further investigation, and
+\item	features of a center organization and management that would best support progress in NGS-enabled applications
+\end{itemize}
+Participants explored two main areas of focus (assembly and systems biology) in small-group breakout session where they discussed in depth how graph abstractions and FCP could accelerate progress in specific NGS-enabled applications. This breakout session, produced potential usecases, identified what an FCP center could do that would help domain researchers utilize accelerator technologies, and other applications or groups could benefit from these efforts. The insights gained from the afternoon break out session can be summarized as follows:
+\begin{itemize}
+\item	Participants identified usecases (de novo transcriptome assembly, polyploidy assembly, and systems biology)
+	\begin{itemize}
+	\item	which are important NGS-enabled applications,
+	\item	for which accelerated algorithms in these applications would benefit a large community of users, and
+	\item	for which graph problems are a critical component.
+	\end{itemize}
+\item	Participants agreed that for accelerated algorithms to be broadly used in the BIO community, outreach and training will be key. (Problems change rapidly and there is a more diverse community users – these factors necessitate tighter integration with domain.)
+\end{itemize}
+
+\subsubsection{Bio-domain workshop 2} Our second workshop on ``Challenges in accelerating Next-Gen Sequencing (NGS) bioinformatics” was held on September 25th 2013 in Washington DC, was collocated with ACM-BCB 2013\cite{acmbcb}. The full report is available at our project wiki page\cite{wiki}. The workshop invited computer science researchers and domain scientists from NGS-enabled application areas of biology. The workshop was attended by more than thirty interdisciplinary scientists with expertise in bioinformatics, microbiology, computational biology, graph algorithms and parallel algorithms design, high performance computing, and accelerator technology, and included developers of several widely used NGS-enabled software applications. The aims of this workshop, which build upon the lessons of the first, were to 
+\begin{itemize}
+\item	identify additional NGS applications with opportunities for accelerator platforms, 
+\item	understand the challenges tools developers face in creating and distributing sustainable accelerated NGS bioinformatics applications, and 
+\item	conceive mechanisms through which a center-scale effort could address these challenges.
+\end{itemize}
+
+Workshop discussions were successful in each of these goals. The information gathered and further explorations inspired by these discussions will play a significant role in shaping the conceptual design for a Center for Sustainable Software on Future Computing Platforms. 
+
+Participants broadly identified assembly as an application area for which acceleration could have a dramatic impact on a vast research community, where assembly without (de novo) and with (resequencing) a reference genome are both of crucial importance. Within each of these categories, participants elucidated algorithmic bottlenecks. For de novo assembly,  graph construction is extremely computationally intensive, while sequence alignment is the primary computational hurdle in resequencing. These and several other tasks, such as graph traversal algorithms and massive data transfer, were identified as key opportunities for acceleration on future computing platforms.
+
+The key challenges participants reported and anticipated in creating and distributing sustainable accelerated NGS bioinformatics applications were as follows:
+\begin{itemize}
+\item	NGS technologies (and thus the characteristics of the data generated), the  bioinformatics algorithms, and accelerator platforms all change quickly. 
+\item	Developing high quality NGS bioinformatics software on accelerator platforms requires that researchers have expertise in both biology and in algorithm development for the particular accelerator, which is a relatively rare combination.
+\end{itemize}
+
+Given the multiple moving targets involved in developing accelerated NGS applications, participants agreed that a FPC center maintaining libraries of accelerated kernels for common algorithms would enable tools developers to focus on innovation rather than on reimplementation and reoptimizaiton of these basic algorithms. Participants felt that a critical role of an FPC center is in providing training for bioinformatics tools developers  on best practices, perhaps by introducing a few key programming paradigms, for various accelerator platforms. Finally, participants suggested that providing some assurance of maintenance of particular, broadly used software would greatly improve both sustainability and distribution. 
+
+\subsection{Technology Panel and Engagement}
+
+\subsubsection{Accelerator Technologies Panel}
+
+On November 21st 2013, we held a \textit{Harnessing Accelerator Technology for Next-Gen Sequencing Bioinformatics} Birds-of-a-Feather Session (BoF), 
+held in Denver, CO, as part of ACM/IEEE International Conference for High Performance Computing, Networking,
+Storage and Analysis (SC). Through a panel session and subsequent discussion, this BoF explored how biological sciences and HPC communities can combine efforts to solve pressing next-generation sequencing (NGS) problems using emerging and future computing platforms. Topics include identifying high-impact problems, discussing software-related challenges and building a community research agenda.
+
+
+\textbf{Panelists}: 
+\begin{itemize}
+\item[]	Steven Wallach, Chief Scientist, Co-Founder and Director at Convey
+\item[]	Jonathan Cohen,  CUDA Library and Algorithms Team Lead at NVIDIA
+\item[]	Bill Feiereisen, Senior Scientist and Corporate Strategist in HPC at Intel
+\item[]	Michael Leventhal, Research Manager, Automata Processor, Developer Tools and Applications at Micron
+\item[]	Dan Stanzione, Deputy Director at TACC and Co-Director of iPlant
+\end{itemize}
+
+
+\paragraph{Motivation and Objectives}
+Emerging platforms assist not only traditional high-performance computing (HPC)-based science but also data-intensive science in such areas as bioinformatics. 
+
+
+
+Next generation sequencing (NGS) technologies enable rich and diverse applications but have found wide gaps between these technologies' potential and current computational reality. Research bridging these gaps delivers broad and immediate impact in both industry and academia. The aim of this Birds-of-a-Feather (BoF) Session was to explore how biological sciences and HPC communities can combine efforts to solve pressing NGS problems using emerging and future computing platforms. We convened a panel of industry leaders in accelerator technologies and cyber infrastructure, and asked them to address the following questions:
+\begin{itemize}
+\item	What are the gaps current practices in the bioinformatics community?
+\begin{itemize}
+\item	hurdles to incorporating the use of accelerators?
+\item	challenges that may be eased by the use of accelerators?
+\item	or more generally a lack of tools or infrastructure?
+\end{itemize}
+\item	What is the role of your organization in NGS bioinformatics going into the future?
+\item	How do you interface with bioinformatics researchers in your development process?
+\item	Who (what specific communities) benefit from accelerating NGS bioinformatics applications?
+\end{itemize}
+
+\paragraph{Activities and Outcomes}
+The BoF drew an audience of more than 50 SC attendees from industry, universities, supercomputing centers, and government agencies.
+
+After a brief overview of the NSF SI2 program and our FCP S2I2 conceptualization project, the panelists demonstrated the value that accelerators bring to NGS bioinformatics applications. They described bioinformatics tools (e.g. for read mapping and de-novo motif search) developed on accelerator platforms, such as GPGPU- and FPGA-based systems and Micron's emerging Automata Processor. The presentations and follow up conversations also pointed to several challenges that arise when developing such applications on accelerators. 
+
+Summary of Challenges:
+\begin{itemize}
+\item	Bioinformatics \textbf{problems are complex}, often deceptively so. Seemingly ``low-hanging fruit" being non-trivial.
+
+\item	Existing \textbf{code is complex}, and many do not easily port to accelerator platforms. For example, even common tasks like mapping and assembly can have slight variations based on the characteristics of the underlying data or particular features of the desired output, creating significant branching in popular code supporting such applications.  This ``branchyness" presents significant challenges for optimization on emerging platforms. 
+	
+\item \textbf{Assessing performance} is difficult. For example, with changes in both the implementation and supporting platform, measuring speed-up of code on accelerators over standard packages is non-trivial. Creating benchmarks and determining best practices to assess speed-up as well as quality will be critical going forward.
+
+\item	Need to \textbf{support full pipelines}. Computationally intensive bioinformatics applications are often just one part of an entire workflow system. Optimizing individual applications is often insufficient to achieve broad impact, and the entire pipeline must be considered. It will be important to support a range of communities from researchers through commercial customers and members of these communities must be engaged to effectively support these applications.
+\end{itemize}
+
+\subsubsection{Further Engagement of Leaders in Technology}
+
+\subsection{Domain Case Studies}
+
+\subsubsection{Transcriptome Assembly}
+
+Until recently, transcriptome assembly from RNA-expression data required mapping sequence reads to the genome of the organism itself or that of a closely related organism. However, assembling transcriptomes directly from sequence reads \textit{without} the use of a reference genome (\textit{de novo} assembly) is of critical importance as the cost of high-throughput sequencing techniques diminishes  expanding sequencing efforts to an ever broader array of organisms.  The current methods for de novo assembly involve several graph problems including graph building, path finding, and path compression all of which can be computationally expensive. Accelerating these approaches using FCP, e.g.\ massively parallel platforms designed to handle graph problems, could benefit a large and diverse community. For example, those studying the resistance of noxious weeds to herbicides\cite{1k_plant}, 
+efforts to increase the nutritional content of non-model plants\cite[e.g.]{safflower, chickpea}, 
+and humanitarian projects aimed at increasing the productivity of food crops \cite{rice}. In general, such advances could impact any group studying gene expression in non-model organisms.
+
+Assemblers which could be accelerated include Trinity, Velvet/Oasis, Trans-Abys, and SOAP. The majority of participants agreed that Trinity was the currently the best target for development of FCP implementations, but given the rate at which assemblers come in and out of fashion, development of \textit{extensible} implementations of the core graph algorithms is key. This relatively fast turnover in cutting edge techniques together with a diverse community of NGS-enabled application areas also requires tighter integration of FCP technology experts and algorithm developers with the bioinformatics community.
+Efforts like the Galaxy Project and iPlant Collaborative could be instrumental in connecting domain users with accelerated applications, and participants recommend that a FCP center pursue these potential synergies. 
+
+(add text indicating other communites that would be affected:  \cite{1k_plant, 1k_insect, 1k_fish})
+
+\subsubsection{Integrative Co-Expression Network Analysis}
+
