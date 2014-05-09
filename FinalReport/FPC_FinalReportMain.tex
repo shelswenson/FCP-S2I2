@@ -1,0 +1,35 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\textwidth = 6.5 in
+\textheight = 9 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.0 in
+\parskip = 0.0in
+%\parindent = 0.2in
+
+\begin{document}
+\title{Report on NSF S2I2 Conceptualization Project for \\
+\textbf{Accelerating Grand Challenge Data-intensive Problems using Future Computing Platforms}}
+\author{Viktor Prasanna and M. Shel Swenson, \textit{University of Southern California} \\
+David A. Bader, Richard Vuduc, and Jason Riedy, \textit{Georgia Institute of Technology} \\
+Manish Parashar, \textit{Rutgers, The State University of New Jersey}\\
+Yogesh Simmhan, \textit{Indian Institute of Science}}
+\date{\today}
+\maketitle
+
+%%%%%  Section: EXECUTIVE SUMMARY %%%%%
+\input{executive_summary}
+\pagebreak
+
+\tableofcontents
+
+\pagebreak
+
+\end{document}
