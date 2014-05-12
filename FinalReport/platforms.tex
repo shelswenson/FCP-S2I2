@@ -1,35 +1,42 @@
 \subsection{Potential of Future Computing Platforms}
 The forefront of computing platforms includes Cloud computing platforms, large multi-core and
 multi-threaded processors, GPGPUs and FPGAs. These offer different degrees of general applicability,
-performance and power efficiencies, and technological risk. Each platform exposes new
+performance and power efficiencies, and technological risk. 
+Each platform exposes new
 opportunities within our focal science areas, but no single platform best serves every opportunity
-for accelerating scientific breakthroughs. Here we briefly describe the platforms and highlight
+for accelerating scientific breakthroughs. 
+Here we briefly describe the platforms and highlight
 known applications. Computational technology often progresses more rapidly than science, and the
-emerging computing platforms of today will form tomorrow’s CI.
+emerging computing platforms of today will form tomorrow's CI.
 
 \subsubsection{Multi-core, Many-core and Multi-threaded processors}
 We consider multi-core processors to house multiple identical processing units capable of fully
-independent execution – different from some GPGPUs where cores must act in concert. Multi-threaded processors oversubscribe a single processing unit by appearing as many to optimize
-efficient use of internal functional units. Since 2004, microprocessor companies have been adding
-cores rather than increasing the clock speed of single cores to circumvent the “power wall”. This
+independent execution, different from some GPGPUs where cores must act in concert. 
+Multi-threaded processors oversubscribe a single processing unit by appearing as many to optimize
+efficient use of internal functional units. 
+Since 2004, microprocessor companies have been adding
+cores rather than increasing the clock speed of single cores to circumvent the ``power wall".
+This
 trend has permeated to general-purpose processors for laptops, servers and Cloud infrastructure, and
-to embedded and accelerator processors. High-end commercial processors have reached ten [140] to
-sixteen [46, 147] cores per chip for workstations and servers, and upcoming multicore accelerators
-have been demonstrated with 50 or more cores [78]. Embedded accelerator processors that tend to
-be more power-efficient and include domain-specialized instructions are up to 100 cores [43, 156].
+to embedded and accelerator processors. 
+High-end commercial processors have reached ten~\cite{conf/isscc/SawantDSSRADN11} to
+sixteen~\cite{Butler:2011:BAM,conf/isscc/ShinTHPPHLSJSGLS10} cores per chip for workstations and servers, and upcoming multicore accelerators
+have been demonstrated with 50 or more cores~\cite{intel.mic}. 
+Embedded accelerator processors that tend to
+be more power-efficient and include domain-specialized instructions are up to 100 cores~\cite{Bell2008, TileGX8100}.
 
 Multi-core processors fill an important niche in scientific processing because of their flexibility,
-programmability, and ability to execute control-intensive algorithms efficiently [90, 168, 49].
+programmability, and ability to execute control-intensive algorithms efficiently~\cite{Kang2009,Williams2009,aparna.fmm}.
 Emerging programming models are better exposing available parallelism; compilers are improving
 in their ability to exploit parallelism. Domain-specific libraries and optimization strategies have
-addressed applications such as protein folding [41] and packet analysis for network security [71].
+addressed applications such as protein folding~\cite{5160922} and packet analysis for network security~\cite{fusco:2010:imc}.
 However, their ability to support scientific communities for grand challenges is endangered unless
 software innovation finds sustainable ways to exploit the growing parallelism of multi- and manycore
-processors [129]. As the number of cores increases, software development becomes more
-challenging [114, 15], especially for performance critical applications. Interconnects, topology,
+processors~\cite{patternson:2010:spectrum}. As the number of cores increases, software development becomes more
+challenging~\cite{conf/sc/MattsonRLBHKHVBRD10,Asanovic:2009:VPC:1562764.1562783}, especially for performance critical applications. Interconnects, topology,
 and locality become more complex as the limit of cores connected via a single bus is reached.
-Optimizations to limit off-chip memory bandwidth is required with multiple cores accessing remote
-memory. Reliability becomes a concern as the internal complexity and number of components in
+Optimizations to limit off-chip memory bandwidth is required with multiple cores accessing remote memory. 
+Reliability becomes a concern as the internal complexity and number of components in
 both software and hardware increases. Debugging is also more challenging.
 
 Multi-threaded acceleration focuses on memory bottlenecks. These accelerators tolerate latency
@@ -37,56 +44,81 @@ from accessing unpredictably scattered data by maintaining many execution thread
 thread issues computational instructions once all outstanding memory references are satisfied. With
 a deep enough queue of memory references and enough threads available, a processor can keep
 all its execution units busy and achieve astounding efficiency. Another feature is a fine-grained
-synchronization facility. For example, the Cray XMT [55] achieves remarkable efficiency on
+synchronization facility. 
+For example, the Cray XMT~\cite{CrayInc.2007} achieves remarkable efficiency on
 massive graph analysis by tolerating latencies all the way to its distributed memory units. Finegrained
-locking is “free” because it is amortized into the memory latency, and this permits automatic
-optimization and software composition otherwise impossible. Simple software often achieves high
+locking is ``free" because it is amortized into the memory latency, and this permits automatic
+optimization and software composition otherwise impossible. 
+Simple software often achieves high
 efficiency on multi-threaded architecture, as illustrated by the efficient analysis of twitter data
-from 50,000 users for studying the spread of H1N1 influenza [62]. A more common variety of
-multi-threaded acceleration is available within Intel’s Hyper-Threading (HT) [79, 138, 104]. With
+from 50,000 users for studying the spread of H1N1 influenza~\cite{Ediger2010a}. 
+A more common variety of
+multi-threaded acceleration is available within Intel’s Hyper-Threading (HT)~\cite{IntelCorp.2002,Riedy2011b,pasqual}. 
+With
 careful software design, HT has produced excellent results including the fastest, most reliable
-single-node de novo sequence assembler currently available [104].
+single-node \textit{de novo} sequence assembler currently available~\cite{pasqual}.
 
 \subsubsection{General Purpose Graphics Processing Units (GPGPUs)}
 Traditionally, Graphics Processing Units (GPUs) have acted as co-processors within a computer
-system providing acceleration of 3D graphics rendering. Recent years have brought significant
+system providing acceleration of 3D graphics rendering. 
+Recent years have brought significant
 interest in exploiting the enhanced memory bandwidth and raw floating-point horsepower of GPUs
-for general purpose computation; hence General Purpose GPUs or GPGPUs. GPGPUs’ extremely
+for general purpose computation; 
+hence General Purpose GPUs or GPGPUs. GPGPUs' extremely
 high FLOPS rates with relatively low cost and power consumption makes them attractive targets for
-acceleration. Many scientific applications including molecular dynamics (MD) simulations [13] and
-dense linear algebra [157] successfully exploit GPGPUs. Several recent trends are cementing the
-role of GPGPUs in future CI and improving their accessibility for scientific innovation. High-end GPUs are increasingly standard equipment in scientific workstations. Thus, many research labs
-acquire GPGPUs at little or no additional cost. The Amazon AWS Cloud provider recently released
-GPGPU VMs in their Cloud [143]. In the Top500 ranking of supercomputers, 39 systems use
-GPGPUs, including three of the top five [115]. All Gordon Bell Prize winners for 2009–2011 use
-GPGPUs [74, 136, 146].
+acceleration. 
+Many scientific applications including molecular dynamics (MD) simulations~\cite{moleculardynamics} and
+dense linear algebra~\cite{denselinearalgebra} successfully exploit GPGPUs. 
+Several recent trends are cementing the
+role of GPGPUs in future CI and improving their accessibility for scientific innovation. 
+High-end GPUs are increasingly standard equipment in scientific workstations. 
+Thus, many research labs
+acquire GPGPUs at little or no additional cost. 
+The Amazon AWS Cloud provider recently released
+GPGPU VMs in their Cloud~\cite{AmazonGPU}. 
+In the Top500 ranking of supercomputers, 39 systems use
+GPGPUs, including three of the top five~\cite{top500:sc11}. 
+All Gordon Bell Prize winners for 2009–2011 use 
+GPGPUs~\cite{Hamada09,conf/sc/RahimianLVCMMSSVVZB10,Shimokawabe:2011:PPS:2063384.2063388}.
 
-GPGPU hardware is optimized to perform massively data parallel operations on streams of data,
-where a “kernel” operation is performed in parallel on all elements in the stream using hundreds of
-cores, and multiple kernels are pipelined together. Rebuilding software and algorithms in this form
-is challenging [171], eased by application programming interfaces (APIs) like NVIDIAs Compute
-Unified Device Architecture (CUDA) [126] and AMDs ATI Stream [12] targeted at the general
-purpose scientific computing. Algorithmic paradigm shifts are often required in existing code to
-maximize the performance offered by GPGPUs. A key strategy in improving wall clock time to
-scientific problem solution recasts algorithms to reflect the underlying hardware. An algorithm that
-performs poorly on a CPU may perform orders of magnitude better on a GPU and vice versa [159].
+GPGPU hardware is optimized to perform massively data parallel operations on streams of data, where
+a ``kernel'' operation is performed in parallel on all elements in the stream using hundreds of cores, and multiple kernels
+are pipelined together.
+Rebuilding software and algorithms in this form is
+challenging~\cite{Yang2007:gpu}, eased by application
+programming interfaces (APIs) like NVIDIA’s Compute Unified Device
+Architecture (CUDA)~\cite{NVIDIA.cuda.4} and AMD’s ATI
+Stream~\cite{ATI.Stream} targeted at the general purpose scientific
+computing.
+Algorithmic paradigm shifts are often required in existing code to
+maximize the performance offered by GPGPUs.
+A key strategy in improving wall clock time to scientific problem
+solution recasts algorithms to reflect the underlying hardware. 
+An algorithm that performs poorly on a CPU may perform orders of
+magnitude better on a GPU and vice versa~\cite{Vuduc:2010kx}.
 
-Despite being more difficult to optimize for than CPUs, GPGPUs are being used for a variety
-of data-parallel computations, such as sorting, FFTs, wavelets, and dense matrix multiply; sparse
-conjugate gradient and multi-grid; bioinformatics; relational joins for databases; quantum chemistry;
-and the fast multi-pole method [148]. However, productive and efficient use of these highly-capable
-GPGPUs requires improved development environments that expose better programming models,
-handle streaming data movement, and reduce scheduling overheads [17].
+Despite being more difficult to optimize for than CPUs, GPGPUs are being
+used for a variety of data-parallel computations, such as sorting, FFTs,
+wavelets, and dense matrix multiply; sparse conjugate gradient and
+multi-grid; bioinformatics; relational joins for databases; quantum
+chemistry; and the fast multi-pole method~\cite{NVIDIA.cuda.community}.
+However, productive and efficient use of these highly-capable GPGPUs
+requires improved development environments that expose better
+programming models, handle streaming data movement, and reduce
+scheduling overheads~\cite{AugThiNamWac11CCPE}.
 
 \subsubsection{Field Programmable Gate Arrays (FPGAs)}
 Field Programmable Gate Arrays (FPGAs), invented in the mid 1980s, were predominantly used for
-connecting two or more different logical subsystems. Recently, FPGA sizes have grown significantly
-leading to heightened interest in using them as accelerators for general purpose computing. Vendors
-now manufacture FPGAs with multi-million, or even a billion, transistors. The large size and
-architectural enhancements, including domain-specific feature sets, provide the needed versatility
-to accelerate a wide range of applications on modern FPGAs. Scientific applications that have
-leveraged accelerated kernels on FPGAs include signal and image processing [153], particle physics
-[103] and network security [81].
+connecting two or more different logical subsystems. 
+Recently, FPGA sizes have grown significantly
+leading to heightened interest in using them as accelerators for general purpose computing. Vendors now manufacture FPGAs with multi-million, 
+or even a billion, transistors. 
+The large size and architectural enhancements, 
+including domain-specific feature sets, provide the needed versatility
+to accelerate a wide range of applications on modern FPGAs. 
+Scientific applications that have leveraged accelerated kernels on FPGAs include signal
+and image processing \cite{Stitt:2011:E2EFPGA}, particle physics \cite{liu:2011:hades} and network
+security \cite{jiang:2011:tvlsi}.
 
 The building blocks of reconfigurable FPGA architecture are typically an array of logic blocks,
 IO pads, routing channels, DSP blocks and internal RAM. Depending on the application, these
@@ -95,49 +127,67 @@ implement arithmetic and logic operations such as add, multiply, and compare. Th
 through the FPGAs using configurable routing channels with point-to-point dedicated interconnects
 that avoid overheads, like cache misses, present in general processors. The ability to chain thousands
 of operators with data routing between them make FPGAs an excellent platform for data flow
-pipelines that can accelerate scientific applications with wide parallelism. Some metrics of the
-parallelism offered include [155]:
+pipelines that can accelerate scientific applications with wide parallelism. 
+Some metrics of the parallelism offered include~\cite{HPCFPGA}:
 \begin{itemize}
-\item Internal bandwidth of Terabytes/sec to move results between application logic blocks,
-\item Throughput of Tera-operations/sec for integer operations, and
-\item Throughput of Gigaflops/sec for floating point operations.
+\item Internal bandwidth of Terabytes/sec (TB/s) to move results between
+  application logic blocks,
+\item Throughput of Tera-operations/sec (TOPS) for integer operations, and
+\item Throughput of Gigaflops/sec (GFLOPS) for floating point operations.
 \end{itemize}
-Several FPGA-based solutions are available from HPC system vendors [152] with associated
-compiler tools, libraries and services to program these systems. While several science communities
-can leverage the immense acceleration offered by FPGAs, careful consideration has to be given to
-restructure their algorithms to achieve potential gains [154, 70, 145, 52, 39, 172, 134, 72, 173].
+Several FPGA-based solutions are available from
+HPC system vendors \cite{FPGA-Vendors} with associated 
+compiler tools, libraries and services to program these systems. While several
+science communities can leverage the immense acceleration offered by FPGAs, careful
+consideration has to be given to restructure their algorithms to achieve potential
+gains~\cite{Storaasli2007,Fu2009,Shafer2010,Convey,Baker2007,Yi2010,Putnam2009,Ganegedara2010,Hua2008}.
 
 
 \subsubsection{Cloud Computing Platforms}
-The phrase “Cloud computing” covers many levels of abstractions including virtualized dynamically
+The phrase ``Cloud computing" covers many levels of abstractions including virtualized dynamically
 provisioned infrastructure, applications written under specific platforms and models like MapReduce,
-and composable or self-contained application services. These infrastructure, platform, and software
-as a service (IaaS, PaaS, SaaS) models are often layered. Cloud computing, particularly IaaS and
+and composable or self-contained application services. 
+These infrastructure, platform, and software
+as a service (IaaS, PaaS, SaaS) models are often layered. 
+Cloud computing, particularly IaaS and
 PaaS, is gaining support in the broader scientific community to provide on-demand and easy access
-to computation and storage resources with low management overhead. External service providers
-with large data centers provision and manage elastic, virtual resources and lower barriers to entry.
-Collocating massive datasets with large computing resources eases tackling data-intensive grand
-challenge problems as demonstrated by Cloud projects funded by DOE (Magellan [110]) and NSF
-(CluE [50] and CiC [69]). Several open source Cloud fabrics [63, 124] also exist.
-Clouds require careful consideration, and our conceptual design will examine mapping applications
-in biology, social science, and security to Cloud platforms. We will identify applications
-that benefit from Clouds and also limitations in the Cloud software stack and programming models.
+to computation and storage resources with low management overhead. 
+External service providers with large data centers provision and manage elastic, 
+virtual resources and lower barriers to entry.
+Collocating massive datasets with large computing resources eases tackling
+data-intensive grand challenge problems as demonstrated by Cloud projects
+funded by DOE (Magellan~\cite{magellan}) and NSF (CluE~\cite{CluE} and
+CiC~\cite{CiC}). 
+Several open source Cloud fabrics~\cite{Euca, Nimbus} also exist.
 
-Clouds provide an easier platform for data collection and dissemination among large pools of
-researchers and human subjects that is well suited for social sciences. Computational biology and
-bioinformatics successfully leverage Cloud resources for large scale tasks [96, 106]. Several efforts
-are on to build Science as a Service (ScaaS) for the biological sciences community [166, 139, 7].
+Clouds require careful consideration, and our conceptual design will examine mapping applications
+in biology, social science, and security to Cloud platforms. 
+We will identify applications
+that benefit from Clouds and also limitations in the Cloud software stack and programming models.
+Clouds provide an easier platform for data collection and dissemination among large
+pools of researchers and human subjects that is well suited for social sciences.
+Computational biology and bioinformatics successfully leverage Cloud resources for
+large scale tasks~\cite{langmead:Cloudsnp:2009, lu:azureblast:2010}.
+Several efforts are on to build Science as a Service (ScaaS) for the biological
+sciences community~\cite{carmen,myexperiment,Afgan2011}.
+
 Not all science applications in our focus areas will map well to Cloud computing in their entirety.
 Loosely coupled, task- and data- parallel applications are well suited for Clouds’ relatively low
-network bandwidth and high latency. Intermittent virtual resource performance and availability
-also requires application resilience. Some key social network analysis kernels work well in the
-MapReduce model [92], but overall the model is too constrained. More recent generalizations map
-the bulk-synchronous processing (BSP) model to Cloud resources including Google’s Pregel [111]
-for social network graph analysis, and UIUC’s Sector and Sphere [111, 73], opening Clouds to
-wider use in our science domains. In our experience, portions of applications that extract subsets of
-massive, irregularly structured datasets can take advantage of Cloud computing’s scale. The subset
-then is passed to other computing platforms for analysis [89]. Multi-core processors and GPGPU’s
-are increasingly available within public Cloud infrastructures [143] to support this hybrid model.
-The conceptualization process, assisted by our synergistic activity [131], will identify common
+network bandwidth and high latency. 
+Intermittent virtual resource performance and availability
+also requires application resilience. 
+Some key social network analysis kernels work well in the
+MapReduce model~\cite{conf/icdm/KangTF09}, but overall the model is too constrained. 
+More recent generalizations map
+the bulk-synchronous processing (BSP) model to Cloud resources including Google’s Pregel~\cite{conf/spaa/MalewiczABDHLC09}
+for social network graph analysis, and UIUC’s Sector and Sphere~\cite{conf/spaa/MalewiczABDHLC09,oai:arXiv.org:0808.3019}, 
+opening Clouds to wider use in our science domains. 
+In our experience, portions of applications that extract subsets of
+massive, irregularly structured datasets can take advantage of Cloud computing’s scale. 
+The subset
+then is passed to other computing platforms for analysis~\cite{Cloud.hybrid}. Multi-core processors and GPGPU's are
+increasingly available within public Cloud
+infrastructures~\cite{AmazonGPU} to support this hybrid model.
+The conceptualization process, assisted by our synergistic activity~\cite{prasanna:cic:pillcrow}, will identify common
 programming paradigms for utilizing Cloud resources, issues blocking wider adoption, and specific
 aspects of grand challenge problems that are well suited for operating on Clouds.
