@@ -15,7 +15,7 @@ independent execution, different from some GPGPUs where cores must act in concer
 Multi-threaded processors oversubscribe a single processing unit by appearing as many to optimize
 efficient use of internal functional units. 
 Since 2004, microprocessor companies have been adding
-cores rather than increasing the clock speed of single cores to circumvent the ``power wall".
+cores rather than increasing the clock speed of single cores to circumvent the ``power wall''.
 This
 trend has permeated to general-purpose processors for laptops, servers and Cloud infrastructure, and
 to embedded and accelerator processors. 
@@ -47,13 +47,13 @@ all its execution units busy and achieve astounding efficiency. Another feature 
 synchronization facility. 
 For example, the Cray XMT~\cite{CrayInc.2007} achieves remarkable efficiency on
 massive graph analysis by tolerating latencies all the way to its distributed memory units. Finegrained
-locking is ``free" because it is amortized into the memory latency, and this permits automatic
+locking is ``free'' because it is amortized into the memory latency, and this permits automatic
 optimization and software composition otherwise impossible. 
 Simple software often achieves high
 efficiency on multi-threaded architecture, as illustrated by the efficient analysis of twitter data
 from 50,000 users for studying the spread of H1N1 influenza~\cite{Ediger2010a}. 
 A more common variety of
-multi-threaded acceleration is available within Intel’s Hyper-Threading (HT)~\cite{IntelCorp.2002,Riedy2011b,pasqual}. 
+multi-threaded acceleration is available within Intel's Hyper-Threading (HT)~\cite{IntelCorp.2002,Riedy2011b,pasqual}. 
 With
 careful software design, HT has produced excellent results including the fastest, most reliable
 single-node \textit{de novo} sequence assembler currently available~\cite{pasqual}.
@@ -86,8 +86,8 @@ a ``kernel'' operation is performed in parallel on all elements in the stream us
 are pipelined together.
 Rebuilding software and algorithms in this form is
 challenging~\cite{Yang2007:gpu}, eased by application
-programming interfaces (APIs) like NVIDIA’s Compute Unified Device
-Architecture (CUDA)~\cite{NVIDIA.cuda.4} and AMD’s ATI
+programming interfaces (APIs) like NVIDIA's Compute Unified Device
+Architecture (CUDA)~\cite{NVIDIA.cuda.4} and AMD's ATI
 Stream~\cite{ATI.Stream} targeted at the general purpose scientific
 computing.
 Algorithmic paradigm shifts are often required in existing code to
@@ -144,7 +144,7 @@ gains~\cite{Storaasli2007,Fu2009,Shafer2010,Convey,Baker2007,Yi2010,Putnam2009,G
 
 
 \subsubsection{Cloud Computing Platforms}
-The phrase ``Cloud computing" covers many levels of abstractions including virtualized dynamically
+The phrase ``Cloud computing'' covers many levels of abstractions including virtualized dynamically
 provisioned infrastructure, applications written under specific platforms and models like MapReduce,
 and composable or self-contained application services. 
 These infrastructure, platform, and software
@@ -172,18 +172,18 @@ Several efforts are on to build Science as a Service (ScaaS) for the biological
 sciences community~\cite{carmen,myexperiment,Afgan2011}.
 
 Not all science applications in our focus areas will map well to Cloud computing in their entirety.
-Loosely coupled, task- and data- parallel applications are well suited for Clouds’ relatively low
+Loosely coupled, task- and data- parallel applications are well suited for Clouds' relatively low
 network bandwidth and high latency. 
 Intermittent virtual resource performance and availability
 also requires application resilience. 
 Some key social network analysis kernels work well in the
 MapReduce model~\cite{conf/icdm/KangTF09}, but overall the model is too constrained. 
 More recent generalizations map
-the bulk-synchronous processing (BSP) model to Cloud resources including Google’s Pregel~\cite{conf/spaa/MalewiczABDHLC09}
-for social network graph analysis, and UIUC’s Sector and Sphere~\cite{conf/spaa/MalewiczABDHLC09,oai:arXiv.org:0808.3019}, 
+the bulk-synchronous processing (BSP) model to Cloud resources including Google's Pregel~\cite{conf/spaa/MalewiczABDHLC09}
+for social network graph analysis, and UIUC's Sector and Sphere~\cite{conf/spaa/MalewiczABDHLC09,oai:arXiv.org:0808.3019}, 
 opening Clouds to wider use in our science domains. 
 In our experience, portions of applications that extract subsets of
-massive, irregularly structured datasets can take advantage of Cloud computing’s scale. 
+massive, irregularly structured datasets can take advantage of Cloud computing's scale. 
 The subset
 then is passed to other computing platforms for analysis~\cite{Cloud.hybrid}. Multi-core processors and GPGPU's are
 increasingly available within public Cloud
@@ -191,3 +191,8 @@ infrastructures~\cite{AmazonGPU} to support this hybrid model.
 The conceptualization process, assisted by our synergistic activity~\cite{prasanna:cic:pillcrow}, will identify common
 programming paradigms for utilizing Cloud resources, issues blocking wider adoption, and specific
 aspects of grand challenge problems that are well suited for operating on Clouds.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "FPC_FinalReportMain"
+%%% End: 
