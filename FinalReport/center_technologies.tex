@@ -3,6 +3,25 @@
 
 \subsubsection{Emerging and Future Platforms}
 
+\begin{itemize}
+\item categories: new processors, fpgas, custom ASICs
+\item need to maintain flexibility
+  \begin{itemize}
+  \item adapt quickly, but also ignore quickly if no pay off
+  \item find how to protect end-users from vendor-specific access methods but allow access, nasty trade-off
+  \item must find balance of problem specific v. general
+    \begin{itemize}
+    \item too problem-specific to support: bitcoin hash engines
+    \item not too-problem-specific: FPGA sold to compute bitcoin hashes
+    \end{itemize}
+  \end{itemize}
+\item keep a collection of ``benchmark'' problems (akin to the dwarves, but actual code)
+  \begin{itemize}
+  \item evaluate how each can map to new platforms
+  \item provide initial implementations, crucial for developers starting out
+  \item find abstractions across similar future platforms
+  \end{itemize}
+\end{itemize}
 
 \subsubsection{Resources}
 An NSF center focused on accelerator research will need both hardware and software resources. While the need for hardware resources is obvious, the software resource component for accelerators is larger
