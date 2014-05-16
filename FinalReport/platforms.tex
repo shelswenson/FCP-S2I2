@@ -1,118 +1,78 @@
 \subsection{Potential of Future Computing Platforms}
-The forefront of computing platforms includes Cloud computing platforms, large multi-core and
-multi-threaded processors, GPGPUs and FPGAs. These offer different degrees of general applicability,
-performance and power efficiencies, and technological risk. 
+The landscape of future computing platforms is diverse, consisting of conventional multicore systems, hardware multithreaded sytems, mobile and embedded systems (e.g., ARM, Intel Atom), manycore co-processor accelerated systems (e.g., GPGPUs, Intel Xeon Phi), and systems with special function and/or reconfigurable (e.g., FPGA) hardware.
+These offer different degrees of general applicability,
+performance and power efficiencies, and technological risk~\cite{Choi:2014bb}.
 Each platform exposes new
 opportunities within our focal science areas, but no single platform best serves every opportunity
 for accelerating scientific breakthroughs. 
-Here we briefly describe the platforms and highlight
+Here, we briefly describe the platforms and highlight
 known applications. Computational technology often progresses more rapidly than science, and the
 emerging computing platforms of today will form tomorrow's CI.
 
-\subsubsection{Multi-core, Many-core and Multi-threaded processors}
-We consider multi-core processors to house multiple identical processing units capable of fully
-independent execution, different from some GPGPUs where cores must act in concert. 
-Multi-threaded processors oversubscribe a single processing unit by appearing as many processors to optimize
-use of internal functional units. 
-Since 2004, microprocessor companies have been adding
-cores rather than increasing the clock speed of single cores to circumvent the ``power wall''.
-This
-trend has permeated to general-purpose processors for laptops, servers and Cloud infrastructure, and
-to embedded and accelerator processors. 
-High-end commercial processors have over ten cores per chip for workstations and servers\cite{power8,sparcm6,intel-ivytown}, and current multicore accelerators
-are on the market with 50 or more cores~\cite{intel.mic}.
-Even some smart phones commonly have two to four cores.
-Embedded accelerator processors that tend to
-be more power-efficient and include domain-specialized instructions are up to 100 cores~\cite{Bell2008, TileGX8100}.
+\subsubsection{High-level design space: multicore, manycore, and hardware multithreading}
+The main mechanism for exploiting parallelism is to assemble a parallel processor from general-purpose cores, where each core can execute a sequential task fully independently from other cores.
+The main reason for replicating cores is power:
+increasing the number of cores improves performance linearly while also improving power only linearly, which is better than the superlinear (quadratic or higher) increases in power required to make an individual core faster~\cite{patterson:2010:spectrum}.
 
-Multi-core processors fill an important niche in scientific processing because of their flexibility,
-programmability, and ability to execute control-intensive algorithms efficiently~\cite{Kang2009,Williams2009,aparna.fmm}.
-Emerging programming models are better exposing available parallelism; compilers are improving
-in their ability to exploit parallelism. Domain-specific libraries and optimization strategies have
-addressed applications such as protein folding~\cite{5160922} and packet analysis for network security~\cite{fusco:2010:imc}.
+Specific processor and system designs differ primarily in the number of cores per chip and, since one may regard chip area as being largely fixed, the features and capabilities of each core.
+In particular, one design might have relatively few cores where each core uses more area (i.e., more transistors) to include mechanisms that will make a sequential task take less time;
+whereas another design might have relatively many cores that sacrifice per-thread time in favor of more overall concurrency.
+These design contrasts are sometimes referred to as choosing between ``brawny'' versus ``wimpy'' cores or alternatively ``latency-optimized'' versus ``throughput-optimized'' cores~\cite{Holzle2010,Garland2010b}.
+
+Designs based on latency-optimized or brawny cores---including x86, IBM POWER, and SPARC64 architectures, for example~\cite{power8,sparcm6,intel-ivytown}---are most useful when the target workload consists of general-purpose programs with relatively low degrees of thread-level parallelism.
+The vast majority of existing programs fall into this category, owing to the huge investments in developing software primarily with sequential execution in mind.
+This class of processor designs fill an important niche in scientific processing because of their flexibility,
+programmability (owing, for instance, to automatic cache management and support for relatively low-degrees of data parallelism within tasks via short-vector processing or SIMD units), and ability to execute control-intensive algorithms efficiently~\cite{Kang2009,Williams2009,aparna.fmm}.
+Moreover, software development costs will increase dramatically as a desire to exploit more cores increases, since increasing concurrency tends to make software engineering, testing, and debugging much more challenging~\cite{conf/sc/MattsonRLBHKHVBRD10,Asanovic:2009:VPC:1562764.1562783}.
+
+By contrast, designs based on throughput-optimized or wimpy cores---including most GPGPUs, Intel Xeon Phi (``MIC''), and emerging embedded accelerators~\cite{Bell2008,ATI.Stream,intel.mic,TileGX8100}---are best-suited to workloads with very high-degrees of thread-level parallelism.
+Due to both emerging programming models and better compiler support~\cite{NVIDIA2007,OpenCL:www,OpenACC:www}, this class of designs has found success in ``accelerating'' the key bottlenecks of a variety of domain-specific libraries and applications, including protein folding~\cite{5160922} and packet analysis for network security~\cite{fusco:2010:imc}, among numerous others (see below).
 However, their ability to support scientific communities for grand challenges is endangered unless
-software innovation finds sustainable ways to exploit the growing parallelism of multi- and manycore
-processors~\cite{patternson:2010:spectrum}. As the number of cores increases, software development becomes more
-challenging~\cite{conf/sc/MattsonRLBHKHVBRD10,Asanovic:2009:VPC:1562764.1562783}, especially for performance critical applications. Interconnects, topology,
-and locality become more complex as the limit of cores connected via a single bus is reached.
-Optimizations to limit off-chip memory bandwidth is required with multiple cores accessing remote memory. 
-Reliability becomes a concern as the internal complexity and number of components in
-both software and hardware increases. Debugging is also more challenging.
+software innovation finds sustainable ways to exploit the high degrees of parallelism necessary on such systems~\cite{patterson:2010:spectrum}, which as noted above also engender higher testing and debugging costs.
 
-Multi-threaded acceleration focuses on memory bottlenecks. These accelerators tolerate latency
+Within these broad classes, there are many variations based on a variety of techniques.
+One prominent technique is hardware multithreading within a core in order to further tolerate latencies, which can be critical to hiding memory-wall bottlenecks~\cite{Alverson:1990mt,Wulf:1995mw}.
+These accelerators tolerate latency
 from accessing unpredictably scattered data by maintaining many execution threads. An execution
 thread issues computational instructions once all outstanding memory references are satisfied. With
 a deep enough queue of memory references and enough threads available, a processor can keep
-all its execution units busy and achieve astounding efficiency. Another feature is a fine-grained
-synchronization facility. 
+all its execution units busy and achieve astounding efficiency.
+Hardware multithreading can be combined with fine-grained synchronization support for further benefits.
 For example, the Cray XMT~\cite{CrayInc.2007} achieves remarkable efficiency on
-massive graph analysis by tolerating latencies all the way to its distributed memory units. Finegrained
+massive graph analysis by tolerating latencies all the way to its distributed memory units. Fine-grained
 locking is ``free'' because it is amortized into the memory latency, and this permits automatic
 optimization and software composition otherwise impossible. 
 Simple software often achieves high
-efficiency on multi-threaded architecture, as illustrated by the efficient analysis of twitter data
+efficiency on multithreaded architecture, as illustrated by the efficient analysis of Twitter data
 from 50,000 users for studying the spread of H1N1 influenza~\cite{Ediger2010a}. 
 A more common variety of
-multi-threaded acceleration is available within Intel's Hyper-Threading (HT)~\cite{IntelCorp.2002,Riedy2011b,pasqual}. 
+multithreaded acceleration is available within Intel's Hyper-Threading (HT)~\cite{IntelCorp.2002,Riedy2011b,pasqual}. 
 With
 careful software design, HT has produced excellent results including the fastest, most reliable
 single-node \textit{de novo} sequence assembler currently available~\cite{pasqual}.
 
-\subsubsection{General Purpose Graphics Processing Units (GPGPUs)}
-Traditionally, Graphics Processing Units (GPUs) have acted as co-processors within a computer
-system providing acceleration of 3D graphics rendering. 
-Recent years have brought significant
-interest in exploiting the enhanced memory bandwidth and raw floating-point horsepower of GPUs
-for general purpose computation; 
-hence General Purpose GPUs or GPGPUs. GPGPUs' extremely
-high FLOPS rates with relatively low cost and power consumption makes them attractive targets for
-acceleration. 
-Many scientific applications including molecular dynamics (MD) simulations~\cite{moleculardynamics} and
-dense linear algebra~\cite{denselinearalgebra} successfully exploit GPGPUs. 
-Several recent trends are cementing the
-role of GPGPUs in future CI and improving their accessibility for scientific innovation. 
-High-end GPUs are increasingly standard equipment in scientific workstations. 
-Thus, many research labs
-acquire GPGPUs at little or no additional cost. 
-The Amazon AWS Cloud provider recently released
-GPGPU VMs in their Cloud~\cite{AmazonGPU}. 
-In the Top500 ranking of supercomputers, 39 systems use
-GPGPUs, including three of the top five~\cite{top500:sc11}. 
-All Gordon Bell Prize winners for 2009–2011 use 
-GPGPUs~\cite{Hamada09,conf/sc/RahimianLVCMMSSVVZB10,Shimokawabe:2011:PPS:2063384.2063388}.
+\subsubsection{Graphics co-processors (GPUs) and Intel Xeon Phi (MIC)}
+Within the class of throughput-optimized processors, graphics co-processors (GPUs) and Xeon Phi are being widely adopted in high-end systems for diverse applications in computational science and engineering.
+Early successes appeared in the areas of molecular dynamics (MD) simulations~\cite{moleculardynamics},
+dense linear algebra~\cite{denselinearalgebra}.
+From this early enthusiasm, GPUs began to appear in cloud infrastructures, such as Amazon AWS/EC2~\cite{AmazonGPU}, and both GPUs and Phi feature prominently in the Top500 ranking of supercomputers~\cite{Meuer2013}.
+These systems yielded have several Gordon Bell Prize winners in recent years~\cite{Hamada09,conf/sc/RahimianLVCMMSSVVZB10,Shimokawabe:2011:PPS:2063384.2063388}.
 
-GPGPU hardware is optimized to perform massively data parallel operations on streams of data, where
-a ``kernel'' operation is performed in parallel on all elements in the stream using hundreds of cores, and multiple kernels
-are pipelined together.
-Rebuilding software and algorithms in this form is
-challenging~\cite{Yang2007:gpu}, eased by application
-programming interfaces (APIs) like NVIDIA's Compute Unified Device
-Architecture (CUDA)~\cite{NVIDIA.cuda.4} and AMD's ATI
-Stream~\cite{ATI.Stream} targeted at the general purpose scientific
-computing.
-Algorithmic paradigm shifts are often required in existing code to
-maximize the performance offered by GPGPUs.
-A key strategy in improving wall clock time to scientific problem
-solution recasts algorithms to reflect the underlying hardware. 
-An algorithm that performs poorly on a CPU may perform orders of
-magnitude better on a GPU and vice versa~\cite{Vuduc:2010kx}.
-
-Despite being more difficult to optimize for than CPUs, GPGPUs are being
-used for a variety of data-parallel computations, such as sorting, FFTs,
+A key challenge in using platforms based on GPUs and Phi is that they often require substantial algorithmic and software redesign in order to exploit more cores, as well as additional degrees of tuning to exploit explicitly managed memories and data access aggregation to fully utilize the memory systems~\cite{Yang2007:gpu,Vuduc:2010kx}.
+Despite these difficulties, there have been many successes, including sorting, FFTs,
 wavelets, and dense matrix multiply; sparse conjugate gradient and
 multi-grid; bioinformatics; relational joins for databases; quantum
-chemistry; and the fast multi-pole method~\cite{NVIDIA.cuda.community}.
+chemistry; and the n-body problems; both for GPUs~\cite{NVIDIA.cuda.community,Choi:2014kl,Sao:2014wo} and Phi~\cite{Aluru:2014cg,Sarje:2013ap,Liu:2013sp,Liu:2014bs}.
 However, productive and efficient use of these highly-capable GPGPUs
 requires improved development environments that expose better
 programming models, handle streaming data movement, and reduce
 scheduling overheads~\cite{AugThiNamWac11CCPE}.
 
 \subsubsection{Field Programmable Gate Arrays (FPGAs)}
-Field Programmable Gate Arrays (FPGAs), invented in the mid 1980s, were predominantly used for
-connecting two or more different logical subsystems. 
-Recently, FPGA sizes have grown significantly
-leading to heightened interest in using them as accelerators for general purpose computing. Vendors now manufacture FPGAs with multi-million, 
-or even a billion, transistors. 
+Another trend is aggressive specialization.
+These may include cores augmented with application-specific instructions or processing units.
+Arguably the most aggressive form of specialization is the use of Field Programmable Gate Arrays (FPGAs), invented in the mid 1980s.
+Vendors now manufacture FPGAs with multiple millions or billions of transistors.
 The large size and architectural enhancements, 
 including domain-specific feature sets, provide the needed versatility
 to accelerate a wide range of applications on modern FPGAs. 
@@ -128,13 +88,7 @@ through the FPGAs using configurable routing channels with point-to-point dedica
 that avoid overheads, like cache misses, present in general processors. The ability to chain thousands
 of operators with data routing between them make FPGAs an excellent platform for data flow
 pipelines that can accelerate scientific applications with wide parallelism. 
-Some metrics of the parallelism offered include~\cite{HPCFPGA}:
-\begin{itemize}
-\item Internal bandwidth of Terabytes/sec (TB/s) to move results between
-  application logic blocks,
-\item Throughput of Tera-operations/sec (TOPS) for integer operations, and
-\item Throughput of Gigaflops/sec (GFLOPS) for floating point operations.
-\end{itemize}
+Some metrics of the parallelism offered include~\cite{HPCFPGA} internal bandwidths of Terabytes/sec (TB/s) to move results between application logic blocks; throughputs of Tera-operations/sec (TOPS) for integer operations and Gigaflops/sec (GFLOPS) for floating point operations.
 Several FPGA-based solutions are available from
 HPC system vendors \cite{FPGA-Vendors} with associated 
 compiler tools, libraries and services to program these systems. While several
