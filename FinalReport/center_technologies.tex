@@ -20,6 +20,12 @@
   \item evaluate how each can map to new platforms
   \item provide initial implementations, crucial for developers starting out
   \item find abstractions across similar future platforms
+  \item multiple levels of ``benchmarks''
+    \begin{itemize}
+    \item kernels: quickest to port, often will highlight precise architectural features, may not reflect application performance
+    \item mini-applications: considerably more effort, involve both general and specific features, relects some aspects of application performance
+    \item full applications: too much effort for the center, will partner with other S2I2s to assist in porting their applications if other benchmark levels indicate some advantage
+    \end{itemize}
   \end{itemize}
 \end{itemize}
 
